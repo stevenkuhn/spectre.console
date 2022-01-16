@@ -4,6 +4,8 @@ internal sealed class CommandAppSettings : ICommandAppSettings
 {
     public string? ApplicationName { get; set; }
     public string? ApplicationVersion { get; set; }
+    public string? ApplicationHelpTextHeader { get; set; }
+    public string? ApplicationHelpTextFooter { get; set; }
     public bool ShowOptionDefaultValues { get; set; }
     public IAnsiConsole? Console { get; set; }
     public ICommandInterceptor? Interceptor { get; set; }

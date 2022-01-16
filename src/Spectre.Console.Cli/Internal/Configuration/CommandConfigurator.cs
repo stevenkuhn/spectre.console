@@ -27,6 +27,18 @@ internal sealed class CommandConfigurator : ICommandConfigurator
         return this;
     }
 
+    public ICommandConfigurator WithHelpTextHeader(string header)
+    {
+        Command.HelpTextHeader = header;
+        return this;
+    }
+
+    public ICommandConfigurator WithHelpTextFooter(string footer)
+    {
+        Command.HelpTextFooter = footer;
+        return this;
+    }
+
     public ICommandConfigurator WithData(object data)
     {
         Command.Data = data;

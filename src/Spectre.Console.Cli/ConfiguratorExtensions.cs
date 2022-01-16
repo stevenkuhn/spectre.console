@@ -41,6 +41,40 @@ public static class ConfiguratorExtensions
     }
 
     /// <summary>
+    /// Sets the header for the help text of the application.
+    /// </summary>
+    /// <param name="configurator">The configurator.</param>
+    /// <param name="header">The header for the help text.</param>
+    /// <returns>A configurator that can be used to configure the application further.</returns>
+    public static IConfigurator SetApplicationHelpTextHeader(this IConfigurator configurator, string header)
+    {
+        if (configurator == null)
+        {
+            throw new ArgumentNullException(nameof(configurator));
+        }
+
+        configurator.Settings.ApplicationHelpTextHeader = header;
+        return configurator;
+    }
+
+    /// <summary>
+    /// Sets the footer for the help text of the application.
+    /// </summary>
+    /// <param name="configurator">The configurator.</param>
+    /// <param name="footer">The footer for the help text.</param>
+    /// <returns>A configurator that can be used to configure the application further.</returns>
+    public static IConfigurator SetApplicationHelpTextFooter(this IConfigurator configurator, string footer)
+    {
+        if (configurator == null)
+        {
+            throw new ArgumentNullException(nameof(configurator));
+        }
+
+        configurator.Settings.ApplicationHelpTextFooter = footer;
+        return configurator;
+    }
+    
+    /// <summary>
     /// Hides the <c>DEFAULT</c> column that lists default values coming from the
     /// <see cref="DefaultValueAttribute"/> in the options help text.
     /// </summary>

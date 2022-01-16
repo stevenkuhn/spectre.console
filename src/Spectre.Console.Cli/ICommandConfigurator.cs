@@ -27,6 +27,20 @@ public interface ICommandConfigurator
     ICommandConfigurator WithDescription(string description);
 
     /// <summary>
+    /// Sets the header for the help text of the command.
+    /// </summary>
+    /// <param name="header">The command description.</param>
+    /// <returns>The same <see cref="ICommandConfigurator"/> instance so that multiple calls can be chained.</returns>
+    ICommandConfigurator WithHelpTextHeader(string header);
+
+    /// <summary>
+    /// Sets the footer for the help text of the command.
+    /// </summary>
+    /// <param name="footer">The command description.</param>
+    /// <returns>The same <see cref="ICommandConfigurator"/> instance so that multiple calls can be chained.</returns>
+    ICommandConfigurator WithHelpTextFooter(string footer);
+
+    /// <summary>
     /// Sets data that will be passed to the command via the <see cref="CommandContext"/>.
     /// </summary>
     /// <param name="data">The data to pass to the command.</param>

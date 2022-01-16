@@ -78,12 +78,50 @@ internal static class HelpWriter
         var isDefaultCommand = command?.IsDefaultCommand ?? false;
 
         var result = new List<IRenderable>();
-        result.AddRange(GetDescription(command));
+
+        var header = new Composer()
+                .Text($"{model.GetApplicationName()} {model.GetApplicationVersion()}")
+                .LineBreaks(2);
+
+        var helpTextHeader = command == null
+            ? model.ApplicationHelpTextHeader
+            : command.HelpTextHeader ?? GetDescription(command);
+
+        if (helpTextHeader != null)
+        {
+            header.Text(helpTextHeader).LineBreaks(2);
+        }
+
+        result.AddRange(new[] { header });
         result.AddRange(GetUsage(model, command));
         result.AddRange(GetExamples(model, command));
         result.AddRange(GetArguments(command));
         result.AddRange(GetOptions(model, command, writeOptionsDefaultValues));
         result.AddRange(GetCommands(model, container, isDefaultCommand));
+
+        var footer = new Composer();
+
+        if (command == null)
+        {
+            footer
+                .LineBreak()
+                .Text($"Run '{model.GetApplicationName()} [aqua]<COMMAND>[/] --help' for more information about a command.")
+                .LineBreak();
+        }
+
+        var helpTextFooter = command == null
+            ? model.ApplicationHelpTextFooter
+            : command.HelpTextFooter;
+
+        if (helpTextFooter != null)
+        {
+            footer
+                .LineBreak()
+                .Text(helpTextFooter)
+                .LineBreak();
+        }
+
+        result.AddRange(new[] { footer });
 
         return result;
     }
@@ -104,7 +142,7 @@ internal static class HelpWriter
     private static IEnumerable<IRenderable> GetUsage(CommandModel model, CommandInfo? command)
     {
         var composer = new Composer();
-        composer.Style("yellow", "USAGE:").LineBreak();
+        composer.Style("yellow", "Usage:").LineBreak();
         composer.Tab().Text(model.GetApplicationName());
 
         var parameters = new List<string>();
@@ -216,7 +254,7 @@ internal static class HelpWriter
         {
             var composer = new Composer();
             composer.LineBreak();
-            composer.Style("yellow", "EXAMPLES:").LineBreak();
+            composer.Style("yellow", "Examples:").LineBreak();
 
             for (var index = 0; index < Math.Min(maxExamples, examples.Count); index++)
             {
@@ -242,7 +280,7 @@ internal static class HelpWriter
         var result = new List<IRenderable>
             {
                 new Markup(Environment.NewLine),
-                new Markup("[yellow]ARGUMENTS:[/]"),
+                new Markup("[yellow]Arguments:[/]"),
                 new Markup(Environment.NewLine),
             };
 
@@ -281,7 +319,7 @@ internal static class HelpWriter
         var result = new List<IRenderable>
             {
                 new Markup(Environment.NewLine),
-                new Markup("[yellow]OPTIONS:[/]"),
+                new Markup("[yellow]Options:[/]"),
                 new Markup(Environment.NewLine),
             };
 
@@ -377,7 +415,7 @@ internal static class HelpWriter
         var result = new List<IRenderable>
             {
                 new Markup(Environment.NewLine),
-                new Markup("[yellow]COMMANDS:[/]"),
+                new Markup("[yellow]Commands:[/]"),
                 new Markup(Environment.NewLine),
             };
 

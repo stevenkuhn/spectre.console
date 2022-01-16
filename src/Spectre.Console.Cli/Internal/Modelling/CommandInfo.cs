@@ -5,6 +5,8 @@ internal sealed class CommandInfo : ICommandContainer
     public string Name { get; }
     public HashSet<string> Aliases { get; }
     public string? Description { get; }
+    public string? HelpTextHeader { get; }
+    public string? HelpTextFooter { get; }
     public object? Data { get; }
     public Type? CommandType { get; }
     public Type SettingsType { get; }
@@ -26,6 +28,8 @@ internal sealed class CommandInfo : ICommandContainer
         Name = prototype.Name;
         Aliases = new HashSet<string>(prototype.Aliases);
         Description = prototype.Description;
+        HelpTextHeader = prototype.HelpTextHeader;
+        HelpTextFooter = prototype.HelpTextFooter;
         Data = prototype.Data;
         CommandType = prototype.CommandType;
         SettingsType = prototype.SettingsType;
@@ -43,6 +47,24 @@ internal sealed class CommandInfo : ICommandContainer
             if (description != null)
             {
                 Description = description.Description;
+            }
+        }
+
+        if (CommandType != null && string.IsNullOrWhiteSpace(HelpTextHeader))
+        {
+            var helpTextHeader = CommandType.GetCustomAttribute<HelpTextHeaderAttribute>();
+            if (helpTextHeader != null)
+            {
+                HelpTextHeader = helpTextHeader.Header;
+            }
+        }
+
+        if (CommandType != null && string.IsNullOrWhiteSpace(HelpTextFooter))
+        {
+            var helpTextFooter = CommandType.GetCustomAttribute<HelpTextFooterAttribute>();
+            if (helpTextFooter != null)
+            {
+                HelpTextFooter = helpTextFooter.Footer;
             }
         }
     }

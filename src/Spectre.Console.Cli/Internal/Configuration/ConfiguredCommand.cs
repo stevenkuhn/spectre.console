@@ -5,6 +5,8 @@ internal sealed class ConfiguredCommand
     public string Name { get; }
     public HashSet<string> Aliases { get; }
     public string? Description { get; set; }
+    public string? HelpTextHeader { get; set; }
+    public string? HelpTextFooter { get; set; }
     public object? Data { get; set; }
     public Type? CommandType { get; }
     public Type SettingsType { get; }

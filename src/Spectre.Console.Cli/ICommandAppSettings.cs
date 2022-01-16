@@ -16,6 +16,14 @@ public interface ICommandAppSettings
     string? ApplicationVersion { get; set; }
 
     /// <summary>
+    /// Gets or sets the application header help text.
+    /// </summary>
+    string? ApplicationHelpTextHeader { get; set; }
+
+    /// <summary>
+    /// Gets or sets the application footer help text.
+    /// </summary>
+    string? ApplicationHelpTextFooter { get; set; }
     /// Gets or sets a value indicating whether any default values for command options are shown in the help text.
     /// </summary>
     bool ShowOptionDefaultValues { get; set; }

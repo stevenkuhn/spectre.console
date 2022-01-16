@@ -38,7 +38,7 @@ internal sealed class CommandExecutor
                     firstArgument.Equals("-v", StringComparison.OrdinalIgnoreCase))
                 {
                     var console = configuration.Settings.Console.GetConsole();
-                    console.WriteLine(ResolveApplicationVersion(configuration));
+                    console.WriteLine(model.GetApplicationVersion());
                     return 0;
                 }
             }
@@ -85,13 +85,6 @@ internal sealed class CommandExecutor
             // Execute the command tree.
             return await Execute(leaf, parsedResult.Tree, context, resolver, configuration).ConfigureAwait(false);
         }
-    }
-
-    private static string ResolveApplicationVersion(IConfiguration configuration)
-    {
-        return
-            configuration.Settings.ApplicationVersion ?? // potential override
-            VersionHelper.GetVersion(Assembly.GetEntryAssembly());
     }
 
     private static Task<int> Execute(

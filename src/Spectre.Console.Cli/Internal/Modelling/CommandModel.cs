@@ -3,6 +3,9 @@ namespace Spectre.Console.Cli;
 internal sealed class CommandModel : ICommandContainer
 {
     public string? ApplicationName { get; }
+    public string? ApplicationVersion { get; }
+    public string? ApplicationHelpTextHeader { get; }
+    public string? ApplicationHelpTextFooter { get; }
     public ParsingMode ParsingMode { get; }
     public CommandInfo? DefaultCommand { get; }
     public IList<CommandInfo> Commands { get; }
@@ -16,6 +19,9 @@ internal sealed class CommandModel : ICommandContainer
         IEnumerable<string[]> examples)
     {
         ApplicationName = settings.ApplicationName;
+        ApplicationVersion = settings.ApplicationVersion;
+        ApplicationHelpTextHeader = settings.ApplicationHelpTextHeader;
+        ApplicationHelpTextFooter = settings.ApplicationHelpTextFooter;
         ParsingMode = settings.ParsingMode;
         TrimTrailingPeriod = settings.TrimTrailingPeriod;
         DefaultCommand = defaultCommand;
@@ -29,6 +35,13 @@ internal sealed class CommandModel : ICommandContainer
             ApplicationName ??
             Path.GetFileName(GetApplicationFile()) ?? // null is propagated by GetFileName
             "?";
+    }
+
+    public string GetApplicationVersion()
+    {
+        return
+            ApplicationVersion ??
+            VersionHelper.GetVersion(Assembly.GetEntryAssembly());
     }
 
     private static string? GetApplicationFile()
