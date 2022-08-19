@@ -85,7 +85,7 @@ internal static class HelpWriter
 
         var helpTextHeader = command == null
             ? model.ApplicationHelpTextHeader
-            : command.HelpTextHeader ?? GetDescription(command);
+            : command.HelpTextHeader;
 
         if (helpTextHeader != null)
         {
@@ -93,6 +93,7 @@ internal static class HelpWriter
         }
 
         result.AddRange(new[] { header });
+        result.AddRange(GetDescription(command));
         result.AddRange(GetUsage(model, command));
         result.AddRange(GetExamples(model, command));
         result.AddRange(GetArguments(command));
@@ -134,7 +135,7 @@ internal static class HelpWriter
         }
 
         var composer = new Composer();
-        composer.Style("yellow", "DESCRIPTION:").LineBreak();
+        composer.Style("yellow", "Description:").LineBreak();
         composer.Text(command.Description).LineBreak();
         yield return composer.LineBreak();
     }
