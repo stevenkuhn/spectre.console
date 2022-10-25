@@ -1,12 +1,14 @@
-﻿DESCRIPTION:
+myapp 1.2.3
+
+Description:
 The lion command.
 
-USAGE:
+Usage:
     myapp cat [LEGS] lion <TEETH> [OPTIONS]
 
-ARGUMENTS:
+Arguments:
     <TEETH>    The number of teeth the lion has
 
-OPTIONS:
+Options:
     -h, --help       Prints help information
     -c <CHILDREN>    The number of children the lion has

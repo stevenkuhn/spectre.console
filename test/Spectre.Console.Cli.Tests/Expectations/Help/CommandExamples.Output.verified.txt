@@ -1,19 +1,21 @@
-﻿DESCRIPTION:
+myapp 1.2.3
+
+Description:
 The animal command.
 
-USAGE:
+Usage:
     myapp animal [LEGS] [OPTIONS] <COMMAND>
 
-EXAMPLES:
+Examples:
     myapp animal --help
 
-ARGUMENTS:
+Arguments:
     [LEGS]    The number of legs
 
-OPTIONS:
+Options:
     -h, --help     Prints help information
     -a, --alive    Indicates whether or not the animal is alive
 
-COMMANDS:
+Commands:
     dog <AGE>    The dog command
     horse        The horse command

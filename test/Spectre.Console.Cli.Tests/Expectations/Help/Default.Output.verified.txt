@@ -1,14 +1,16 @@
-﻿DESCRIPTION:
+myapp 1.2.3
+
+Description:
 The lion command.
 
-USAGE:
+Usage:
     myapp <TEETH> [LEGS] [OPTIONS]
 
-ARGUMENTS:
+Arguments:
     <TEETH>    The number of teeth the lion has
     [LEGS]     The number of legs
 
-OPTIONS:
+Options:
                              DEFAULT
     -h, --help                          Prints help information
     -a, --alive                         Indicates whether or not the animal is alive

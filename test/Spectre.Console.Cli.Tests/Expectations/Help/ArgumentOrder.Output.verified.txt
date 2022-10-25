@@ -1,12 +1,14 @@
-USAGE:
+myapp 1.2.3
+
+Usage:
     myapp <FOO> <BAR> <BAZ> <CORGI> [QUX] [OPTIONS]
 
-ARGUMENTS:
+Arguments:
     <FOO>
     <BAR>
     <BAZ>
     <CORGI>
     [QUX]
 
-OPTIONS:
+Options:
     -h, --help    Prints help information

@@ -126,6 +126,7 @@ public sealed class CommandAppTester
             app.Configure(config);
         }
 
+        app.Configure(c => c.SetApplicationVersion("1.2.3"));
         app.Configure(c => c.ConfigureConsole(console));
         app.Configure(c => c.SetInterceptor(new CallbackCommandInterceptor((ctx, s) =>
         {

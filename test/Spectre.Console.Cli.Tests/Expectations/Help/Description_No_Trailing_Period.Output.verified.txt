@@ -1,10 +1,14 @@
-USAGE:
+myapp 1.2.3
+
+Usage:
     myapp [OPTIONS] <COMMAND>
 
-OPTIONS:
+Options:
     -h, --help       Prints help information
     -v, --version    Prints version information
 
-COMMANDS:
+Commands:
     dog <AGE>    The dog command.
     horse        The horse command.
+
+Run 'myapp <COMMAND> --help' for more information about a command.

@@ -1,9 +1,11 @@
-USAGE:
+myapp 1.2.3
+
+Usage:
     myapp <FOO> [OPTIONS]
 
-ARGUMENTS:
+Arguments:
     <FOO>    Dummy argument FOO
 
-OPTIONS:
+Options:
     -h, --help    Prints help information
         --baz     Dummy option BAZ
